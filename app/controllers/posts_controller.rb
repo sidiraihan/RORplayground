@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  
 
   # GET /posts
   # GET /posts.json
@@ -24,11 +25,13 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
+    
     @post = Post.new(post_params)
+    @index = posts_path
 
     respond_to do |format|
       if @post.save
-        format.html { redirect_to @post, notice: 'Post was successfully created.' }
+        format.html { redirect_to @index, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
